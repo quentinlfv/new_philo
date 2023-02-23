@@ -8,10 +8,11 @@ CFLAGS	= -Wall -Werror -Wextra -pthread -g3
 
 SRCS		= main.c \
 				thread.c \
-				death.c	\
-				message.c \
-				initialize.c \
-				functions.c \
+				simulation.c	\
+				init.c \
+				check.c \
+				free.c \
+				utils.c \
 
 OBJS		= $(SRCS:.c=.o)
 
