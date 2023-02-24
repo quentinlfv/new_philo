@@ -29,7 +29,6 @@ int join_thread(t_philo *p, size_t nu)
             perror("Failed to join\n");
             return (0);
         }
-        printf("join OK\n");
         i++;
     }
     return (1);

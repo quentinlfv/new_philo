@@ -12,11 +12,12 @@ void    eat(t_philo *p)
     p->last_meal = get_time();
     pthread_mutex_unlock(&p->m_meal);
     usleep(p->data->time_to_eat * 1000);
-    pthread_mutex_unlock(p->fork.right);
-    pthread_mutex_unlock(p->fork.left);
     pthread_mutex_lock(&p->m_nu_meal);
     p->count_meal += 1;
     pthread_mutex_unlock(&p->m_nu_meal);   
+    action_msg(*p, "is sleeping");
+    pthread_mutex_unlock(p->fork.right);
+    pthread_mutex_unlock(p->fork.left);
 }
 
 
@@ -40,7 +41,6 @@ void    *routine(void *arg)
         }
         pthread_mutex_unlock(&p->data->m_life);
         eat(p);
-        action_msg(*p, "is sleeping");
         usleep(p->data->time_to_sleep * 1000);
         action_msg(*p, "is thinking");
     }
@@ -85,5 +85,8 @@ int launch_sim(t_philo *p, t_data data)
     init_thread(p, data.nu_philo);
     watch(p, data);
     join_thread(p, data.nu_philo);
+    action_msg(p[0], "before");
+    ft_usleep(200);
+    action_msg(p[0], "after");
     return (1);
 }

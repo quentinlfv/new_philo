@@ -5,7 +5,7 @@ int main(int argc, char **argv)
     t_philo *p;
     t_data  data;
 
-    if (check_args(argc, &data) != 1)
+    if (check_args(argc, argv, &data) != 1)
         return (2);
     p = NULL;
     data = init_data(argv, data);

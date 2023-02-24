@@ -2,7 +2,7 @@ NAME = philo
 
 CC		= gcc
 
-CFLAGS	= -Wall -Werror -Wextra -pthread -g3
+CFLAGS	= -Wall -Werror -Wextra -pthread -g3 -O3 
 
 
 

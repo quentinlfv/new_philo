@@ -6,6 +6,7 @@ int destroy_mutex(t_philo *p, t_data data)
 
     pthread_mutex_destroy(&data.m_life);
     pthread_mutex_destroy(&data.msg);
+    pthread_mutex_destroy(&data.m_must_eat);
     i = 0;
     while (i < data.nu_philo)
     {

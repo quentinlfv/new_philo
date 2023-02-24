@@ -1,4 +1,4 @@
-#include "philo.h"
+ #include "philo.h"
 
 t_data init_data(char **argv, t_data data)
 {
@@ -10,6 +10,7 @@ t_data init_data(char **argv, t_data data)
     data.time_to_sleep = ft_atoi(argv[4]);
     pthread_mutex_init(&data.m_life, NULL);
     pthread_mutex_init(&data.msg, NULL);
+     pthread_mutex_init(&data.m_must_eat, NULL);
     if (data.must_eat == 1)
         data.must_eat = ft_atoi(argv[5]);
     return (data);
