@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qlefevre <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/24 17:20:22 by qlefevre          #+#    #+#             */
+/*   Updated: 2023/02/24 17:20:25 by qlefevre         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "philo.h"
 
 int	ft_isdigit(int c)
@@ -11,7 +22,7 @@ size_t	ft_atoi(const char *nptr)
 {
 	size_t	i;
 	size_t	n;
-	int	sign;
+	int		sign;
 
 	i = 0;
 	n = 0;
@@ -33,42 +44,42 @@ size_t	ft_atoi(const char *nptr)
 	return (n * sign);
 }
 
-size_t get_time(void)
+size_t	get_time(void)
 {
-    struct timeval get_time;
-    size_t  time;
-
-    gettimeofday(&get_time, NULL);
-    time = get_time.tv_sec * 1000 + get_time.tv_usec / 1000;
-    return (time);
-}
-
-void    action_msg(t_philo p, char *message)
-{
-    size_t  time;
-
-    pthread_mutex_lock(&p.data->m_life);
-    if (p.data->life != 0)
-    {
-        pthread_mutex_unlock(&p.data->m_life);
-        time = get_time();
-        pthread_mutex_lock(&p.data->msg);
-        printf("%ld    %d %s\n", time - p.data->simbegin, p.id, message);
-        pthread_mutex_unlock(&p.data->msg);
-    }
-    else
-    	pthread_mutex_unlock(&p.data->m_life);
-}
-
-
-void	ft_usleep(size_t wait)
-{
-	struct 	timeval get_time;
-	size_t	time;
+	struct timeval	get_time;
+	size_t			time;
 
 	gettimeofday(&get_time, NULL);
 	time = get_time.tv_sec * 1000 + get_time.tv_usec / 1000;
-	while (time + wait > (size_t)get_time.tv_sec * 1000 + (size_t)get_time.tv_usec / 1000)
+	return (time);
+}
+
+void	action_msg(t_philo p, char *message)
+{
+	size_t	time;
+
+	pthread_mutex_lock(&p.data->m_life);
+	if (p.data->life != 0)
+	{
+		pthread_mutex_unlock(&p.data->m_life);
+		time = get_time();
+		pthread_mutex_lock(&p.data->msg);
+		printf("%ld    %d %s\n", time - p.data->simbegin, p.id, message);
+		pthread_mutex_unlock(&p.data->msg);
+	}
+	else
+		pthread_mutex_unlock(&p.data->m_life);
+}
+
+void	ft_usleep(size_t wait)
+{
+	struct timeval	get_time;
+	size_t			time;
+
+	gettimeofday(&get_time, NULL);
+	time = get_time.tv_sec * 1000 + get_time.tv_usec / 1000;
+	while (time + wait > (size_t)get_time.tv_sec * 1000
+		+ (size_t)get_time.tv_usec / 1000)
 	{
 		usleep(50);
 		gettimeofday(&get_time, NULL);
