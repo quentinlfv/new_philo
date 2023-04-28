@@ -67,7 +67,6 @@ int	check_isdigit(char **argv)
 		{
 			if (!ft_isdigit(argv[i][j]))
 			{
-				printf("yo\n");
 				return (0);
 			}
 			j++;

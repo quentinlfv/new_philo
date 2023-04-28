@@ -28,9 +28,7 @@ int	eat(t_philo *p)
 	}
 	action_msg(*p, "has taken a fork");
 	action_msg(*p, "is eating");
-	pthread_mutex_lock(&p->m_meal);
 	p->last_meal = get_time();
-	pthread_mutex_unlock(&p->m_meal);
 	ft_usleep(p->data->time_to_eat);
 	pthread_mutex_lock(&p->m_nu_meal);
 	p->count_meal += 1;

@@ -52,6 +52,9 @@ typedef struct s_philo
 
 }t_philo;
 
+/* main.c */
+void		one_philo(t_philo *p, t_data data);
+
 /* init.c */
 t_data		init_data(char **argv, t_data data);
 t_philo		*init_philo(t_philo *p, t_data *data);
