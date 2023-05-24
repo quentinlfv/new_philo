@@ -18,6 +18,10 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+#define ERR_INIT_MUTEX 4
+#define SUCCESS 1
+#define FAILURE 2
+
 typedef struct s_data
 {
 	int				life;
@@ -54,6 +58,7 @@ typedef struct s_philo
 
 /* main.c */
 void		one_philo(t_philo *p, t_data data);
+t_philo		*get_last_meal(t_philo *p);
 
 /* init.c */
 t_data		init_data(char **argv, t_data data);
@@ -66,6 +71,15 @@ int			watch(t_philo *p, t_data data);
 int			launch_sim(t_philo *p, t_data data);
 void		ft_set_life(t_philo p, t_data data);
 int			eat(t_philo *p);
+int			take_left_fork(t_philo *p);
+
+/* new.c  */
+void	*routine(void *arg);
+int	eat(t_philo *p);
+int	take_right_fork(t_philo *p);
+int	take_left_fork(t_philo *p);
+int eating(t_philo *p);
+int sleeping(t_philo *p);
 
 /* thread.c */
 int			init_thread(t_philo *p, size_t nu);

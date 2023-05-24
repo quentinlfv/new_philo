@@ -34,6 +34,7 @@ int	check_nu_meal(t_philo *p, int nu)
 		if (p[i].id == nu)
 			return (0);
 		i++;
+		// usleep(50);
 	}
 	return (1);
 }
@@ -50,7 +51,10 @@ int	check_args(int argc, char **argv, t_data *data)
 		return (0);
 	}
 	if (!check_isdigit(argv))
+	{
+		perror("Arg error");
 		return (0);
+	}
 	return (1);
 }
 

@@ -35,3 +35,11 @@ void	one_philo(t_philo *p, t_data data)
 	action_msg(p[0], "died");
 	destroy_mutex(p, data);
 }
+
+t_philo	*get_last_meal(t_philo *p)
+{
+	pthread_mutex_lock(&p->m_meal);
+	p->last_meal = get_time();
+	pthread_mutex_unlock(&p->m_meal);
+	return (p);
+}
