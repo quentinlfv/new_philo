@@ -13,25 +13,27 @@
 
 int	main(int argc, char **argv)
 {
-	t_philo	*p;
-	t_data	data;
+	t_data	*data;
 
-	if (check_args(argc, argv, &data) != 1)
+	data = NULL;
+	if (check_args(argc, argv) != 1)
 		return (2);
-	p = NULL;
-	data = init_data(argv, data);
-	if (data.nu_philo == 1)
-		return (one_philo(p, data), 0);
-	p = init_philo(p, &data);
-	launch_sim(p, data);
-	destroy_mutex(p, data);
+	data = init_data(argc, argv);
+	if (data->nu_philo == 1)
+		return (one_philo(*data->philo, data), 0);
+	// pthread_mutex_lock(&data->m_life);
+	// printf("life = %d\n", data->life);
+	// pthread_mutex_unlock(&data->m_life);
+	// action_msg(*data->philo[1], "say hi");
+	launch_sim(*data->philo, data);
+	destroy_mutex(*data->philo, data);
 	return (0);
 }
 
-void	one_philo(t_philo *p, t_data data)
+void	one_philo(t_philo *p, t_data *data)
 {
-	p = init_philo(p, &data);
-	ft_usleep(data.time_to_die);
+	action_msg(p[0], "has taken a fork");
+	ft_usleep(data->time_to_die);
 	action_msg(p[0], "died");
 	destroy_mutex(p, data);
 }

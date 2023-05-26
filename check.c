@@ -34,18 +34,13 @@ int	check_nu_meal(t_philo *p, int nu)
 		if (p[i].id == nu)
 			return (0);
 		i++;
-		// usleep(50);
 	}
 	return (1);
 }
 
-int	check_args(int argc, char **argv, t_data *data)
+int	check_args(int argc, char **argv)
 {
-	if (argc == 5)
-		data->must_eat = 0;
-	else if (argc == 6)
-		data->must_eat = 1;
-	else if (argc > 6)
+	if (argc > 6)
 	{
 		perror("too much arguments");
 		return (0);
