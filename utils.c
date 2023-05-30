@@ -58,13 +58,16 @@ void	action_msg(t_philo *p, char *message)
 {
 	size_t	time;
 
+	pthread_mutex_lock(&p->data->msg);
+	time = get_time();
 	if (is_philo_dead(p) == false)
-	{ 
-		time = get_time();
-		pthread_mutex_lock(&p->data->msg);
+	{
 		printf("%ld    %d %s\n", time - p->data->simbegin, p->id, message);
 		pthread_mutex_unlock(&p->data->msg);
 	}
+	else
+		pthread_mutex_unlock(&p->data->msg);
+
 }
 
 void	ft_usleep(size_t wait)

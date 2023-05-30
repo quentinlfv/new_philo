@@ -56,7 +56,9 @@ bool	check_if_philo_dead(t_data *data)
 	{
 		pthread_mutex_lock(&data->philo[i]->m_meal);
 		if (philo_is_dead(data->philo[i]) == true)
+		{
 			return (true);
+		}
 		if (data->philo[i]->count_meal <= data->must_eat)
 			num_meals = false;
 		pthread_mutex_unlock(&data->philo[i]->m_meal);

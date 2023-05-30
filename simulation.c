@@ -32,6 +32,15 @@ void	eat(t_philo *p)
 	ft_usleep(p->data->time_to_sleep);
 }
 
+void	thinking(t_philo *p)
+{
+	int sleep;
+	sleep = p->data->time_to_eat - p->data->time_to_sleep;
+	if (sleep < 0)
+		sleep = sleep * (-1);
+	ft_usleep((size_t)sleep);
+}
+
 void	*routine(void *arg)
 {
 	t_philo	*p;
@@ -46,7 +55,7 @@ void	*routine(void *arg)
 	{
 		eat(p);
 		action_msg(p, "is thinking");
-		ft_usleep(p->data->time_to_sleep);
+		thinking(p);
 	}
 	return (NULL);
 }

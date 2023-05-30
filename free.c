@@ -15,6 +15,7 @@ int	destroy_mutex(t_data *data)
 {
 	int	i;
 
+	pthread_mutex_unlock(&data->msg);
 	pthread_mutex_destroy(&data->m_life);
 	pthread_mutex_destroy(&data->msg);
 	pthread_mutex_destroy(&data->m_must_eat);
