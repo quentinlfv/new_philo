@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "philo.h"
 
-int	destroy_mutex(t_philo *p, t_data *data)
+int	destroy_mutex(t_data *data)
 {
 	int	i;
 
@@ -22,9 +22,9 @@ int	destroy_mutex(t_philo *p, t_data *data)
 	while (i < data->nu_philo)
 	{
 		free(data->philo[i]);
-		pthread_mutex_destroy(&p[i].my_fork);
-		pthread_mutex_destroy(&p[i].m_meal);
-		pthread_mutex_destroy(&p[i].m_nu_meal);
+		// pthread_mutex_destroy(&p[i].my_fork);
+		// pthread_mutex_destroy(&p[i].m_meal);
+		// pthread_mutex_destroy(&p[i].m_nu_meal);
 		i++;
 	}
 	free(data->philo);

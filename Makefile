@@ -13,7 +13,6 @@ SRCS		= main.c \
 				check.c \
 				free.c \
 				utils.c \
-				new.c \
 				death.c \
 
 OBJS		= $(SRCS:.c=.o)

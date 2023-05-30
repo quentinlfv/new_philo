@@ -69,34 +69,28 @@ t_philo		*get_last_meal(t_philo *p);
 t_data		*init_data(int ac, char **argv);
 t_philo		**init_philo(t_data *data);
 t_philo		**init_fork(t_philo **p, t_data *data);
+t_philo 	*init_philo_mutex(t_philo *p);
 
 /* simulation.c */
 void		*routine(void *arg);
 int			watch(t_philo *p, t_data data);
-int			launch_sim(t_philo *p, t_data *data);
+int			launch_sim(t_data *data);
 void		ft_set_life(t_philo p, t_data *data);
 void		eat(t_philo *p);
-int			take_left_fork(t_philo *p);
+void		eat_second(t_philo *p);
+void		take_left_fork(t_philo *p);
 
 
 /* death.c */
-void    *check_death_conditions(void *arg);
-bool    is_philo_dead(t_philo *p);
-bool    philo_is_dead(t_philo *p);
-bool	check_if_philo_dead(t_data *data);
-
-/* new.c  */
-void	*routine(void *arg);
-// int	eat(t_philo *p);
-int	take_right_fork(t_philo *p);
-int	take_left_fork(t_philo *p);
-int eating(t_philo *p);
-int sleeping(t_philo *p);
+void    	*check_death_conditions(void *arg);
+bool    	is_philo_dead(t_philo *p);
+bool    	philo_is_dead(t_philo *p);
+bool		check_if_philo_dead(t_data *data);
 
 /* thread.c */
 int			init_philos_thread(t_data *data, size_t nu);
 int			init_death_thread(t_data *data);
-int			join_thread(t_philo *p, t_data *data, size_t nu);
+int			join_thread(t_data *data, size_t nu);
 
 /* check.c */
 int			check_args(int argc, char **argv);
@@ -104,12 +98,13 @@ int			check_nu_meal(t_philo *p, int nu);
 int			check_isdigit(char **argv);
 
 /* free.c */
-int			destroy_mutex(t_philo *p, t_data *data);
+int			destroy_mutex(t_data *data);
+ int 		free_all(t_data *data);
 
 /* utils.c */
 size_t		ft_atoi(const char *nptr);
 size_t		get_time(void);
-void		action_msg(t_philo p, char *message);
+void		action_msg(t_philo *p, char *message);
 int			ft_isdigit(int c);
 void		ft_usleep(size_t wait);
 

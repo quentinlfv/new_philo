@@ -54,23 +54,17 @@ size_t	get_time(void)
 	return (time);
 }
 
-void	action_msg(t_philo p, char *message)
+void	action_msg(t_philo *p, char *message)
 {
 	size_t	time;
 
-	pthread_mutex_lock(&p.data->m_life);
-	if (p.data->life != 0)
+	if (is_philo_dead(p) == false)
 	{ 
-		pthread_mutex_unlock(&p.data->m_life);
 		time = get_time();
-		pthread_mutex_lock(&p.data->msg);
-		printf("%ld    %d %s\n", time - p.data->simbegin, p.id, message);
-		// printf("%ld    %d\n", time - p.data->simbegin, p.id);
-		pthread_mutex_unlock(&p.data->msg);
+		pthread_mutex_lock(&p->data->msg);
+		printf("%ld    %d %s\n", time - p->data->simbegin, p->id, message);
+		pthread_mutex_unlock(&p->data->msg);
 	}
-	else
-		pthread_mutex_unlock(&p.data->m_life);
-	
 }
 
 void	ft_usleep(size_t wait)
